@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Function.h"
 #include <vector>
-const double eps = 1e-5;
+//const double eps = 1e-5;
 
 std::vector<double> Function::minus_eval_grad(std::vector<double> x) {
 	std::vector<double> ans(x.size()), coordplush(x.size());

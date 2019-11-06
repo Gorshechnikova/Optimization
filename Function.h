@@ -3,9 +3,13 @@
 
 class Function {
 protected:
+	double eps;
 public:
 	virtual double eval(std::vector<double> x) = 0;
 	std::vector<double> minus_eval_grad(std::vector<double> x);
+	void Set_eps(double epsil) {
+		eps = epsil;
+	}
 };
 
 class function1 : public Function {
