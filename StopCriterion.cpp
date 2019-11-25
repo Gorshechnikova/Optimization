@@ -6,6 +6,8 @@
 //const double eps = 1e-5;
 //const double eps_2 = 1e-10;
 
+//для итерационного метода
+
 bool nabla::stop(std::vector<double> x0, std::vector<double> x1, double f0, double f1, std::vector<double> grad) {
 	if (norm_2(grad) < eps_2)
 		return true;
@@ -26,3 +28,20 @@ bool value::stop(std::vector<double> x0, std::vector<double> x1, double f0, doub
 		return true;
 	return false;
 };
+
+//для стохастического метода
+
+//для прибавления к числу итераций с последнего улучшения:
+//возвращает 0, если произошло улучшение (+ сделать сброс числа таких итераций)
+//возвращает 1, если улучшения не было (прибавить 1 к числу таких итераций)
+bool n_iter::stop(std::vector<double> x0, std::vector<double> x1, double f0, double f1, std::vector<double> grad) {
+	if (f1 < f0)
+		return false;
+	return true;
+}
+
+bool last_improv::stop(std::vector<double> x0, std::vector<double> x1, double f0, double f1, std::vector<double> grad) {
+	if (abs(f1-f0) < eps)
+		return true;
+	return false;
+}

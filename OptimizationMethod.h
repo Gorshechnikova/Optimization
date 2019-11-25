@@ -33,6 +33,10 @@ public:
 };
 
 class Stochastic : public OptimizationMethod {
+	double prob;
 public:
 	virtual std::vector<double> optimize(Area * area, Function * func, StopCriterion * criterion) override;
+	void Set_prob(double p) {
+		prob = p;
+	}
 };

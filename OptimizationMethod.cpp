@@ -4,10 +4,12 @@
 #include <iostream>
 #include <random>
 #include "funcs.h"
+#include <typeinfo>
 //const double eps = 1e-5;
 //const double eps_2 = 1e-10;
 const double min_fun = 9999;
 //const double step = 0.001;
+double delta = 0.1;
 
 
 std::vector<double> FletcherReevesCG::optimize(Area * area, Function * func, StopCriterion * criterion) {
@@ -72,11 +74,11 @@ std::vector<double> FletcherReevesCG::optimize(Area * area, Function * func, Sto
 	return y0;
 }
 
-void OptimizationMethod::Set_step(double st){
+void OptimizationMethod::Set_step(double st) {
 	step = st;
 }
 
-void OptimizationMethod::Set_eps(double epsil){
+void OptimizationMethod::Set_eps(double epsil) {
 	eps = epsil;
 }
 
@@ -85,14 +87,51 @@ std::vector<double> Stochastic::optimize(Area * area, Function * func, StopCrite
 	std::mt19937 gen(rd());
 	//std::mt19937 gen(5);
 	int dim = area->GetDimension();
-	std::vector<double> init_dis = area->GetBorder();
-	std::uniform_real_distribution<> dis(init_dis[0], init_dis[1]);
+	std::vector<double> border = area->GetBorder(), grad;
+	std::uniform_real_distribution<> dis(0, 1);
+	//std::vector<double> rand(dim);
+	int n_h{};
+	int n_hat = 1;
+	if (typeid(*criterion) == typeid(n_iter))
+		n_hat = dynamic_cast<n_iter*>(criterion)->Get_n_hat();
+	double rand{};
 	double curr_eval = func->eval(y0), new_eval{};
-	while (iter < limit_iter) {
-		for (int i = 0; i < dim; ++i)
-			y1[i] = dis(gen);
+	while (iter < limit_iter && n_h < n_hat) {
+		rand = dis(gen);         //этот rand для сравнения с вероятностью prob для выбора области
+		if (rand > prob) {       //в качестве области выбирается вся область
+			for (int i = 0; i < dim; ++i) {
+				rand = dis(gen);     //этот rand для выбора рандомной точки в выбранной области для каждой координаты
+				y1[i] = border[2 * i] + rand * (border[2 * i + 1] - border[2 * i]);
+			}
+		}
+		else {                   //в качестве области выбирается куб "радиусом" delta
+			for (int i = 0; i < dim; ++i) {
+				rand = dis(gen);     //этот rand для выбора рандомной точки в выбранной области для каждой координаты
+				if (y0[i] - delta < border[i * 2])
+					y1[i] = border[2 * i] + rand * (y0[i] + delta - border[2 * i]);
+				else if (y0[i] + delta > border[i * 2 + 1])
+					y1[i] = y0[i] - delta + rand * (border[2 * i + 1] - y0[i] + delta);
+				else
+					y1[i] = y0[i] - delta + rand * 2 * delta;
+			}
+		}
 		++iter;
 		new_eval = func->eval(y1);
+		if (typeid(*criterion) == typeid(n_iter)) {
+			if (criterion->stop(y0, y1, curr_eval, new_eval, grad))      //пояснения работы в StopCriterion.cpp
+				++n_h;
+			else {
+				n_h = 0;
+				/*	y0 = y1;
+					curr_eval = new_eval;*/
+				delta /= 2;
+			}
+		}
+		else
+		{
+			if (criterion->stop(y0, y1, curr_eval, new_eval, grad))
+				return y0;
+		}
 		if (new_eval < curr_eval) {
 			y0 = y1;
 			curr_eval = new_eval;
@@ -101,7 +140,7 @@ std::vector<double> Stochastic::optimize(Area * area, Function * func, StopCrite
 	return y0;
 };
 
-void OptimizationMethod::Set_x0y0y1(std::vector<double> x){
+void OptimizationMethod::Set_x0y0y1(std::vector<double> x) {
 	x0.resize(x.size());
 	y0.resize(x.size());
 	y1.resize(x.size());
