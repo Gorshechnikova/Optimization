@@ -3,9 +3,6 @@
 #include <vector>
 #include "funcs.h"
 
-//const double eps = 1e-5;
-//const double eps_2 = 1e-10;
-
 //для итерационного метода
 
 bool nabla::stop(std::vector<double> x0, std::vector<double> x1, double f0, double f1, std::vector<double> grad) {

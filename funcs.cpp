@@ -1,7 +1,7 @@
 #include "pch.h"
 #include <vector>
 #include "funcs.h"
-//#include "Area.h"
+#include <cassert>
 
 double norm_2(std::vector<double> x) {
 	double ans{};
@@ -10,15 +10,58 @@ double norm_2(std::vector<double> x) {
 	return ans;
 }
 
-//std::vector<double> Set_x0(int dim, Area * area) {
-//	std::vector<double> x(dim);
-//	std::cout << std::endl << "Enter " << dim << " values for initial point: ";
-//	for (int i = 0; i < dim; ++i)
-//		std::cin >> x[i];
-//	while (!area->IsInArea(x)) {
-//		std::cout << "Enter values within the selected interval!" << std::endl;
-//		for (int i = 0; i < dim; ++i)
-//			std::cin >> x[i];
-//	}
-//	return x;
-//}
+double intersection(std::vector<double> x, std::vector<double> direction, std::vector<double> border)
+{
+	int dim = x.size();
+	double alpha{}, opt_alpha = 100;
+	for (int i = 0; i < dim; ++i) {
+		if (direction[i] < 0)
+			alpha = (border[i * 2] - x[i]) / direction[i];
+		else if (direction[i] > 0)
+			alpha = (border[i * 2 + 1] - x[i]) / direction[i];
+		//else alpha = 0;
+		if (alpha < opt_alpha)
+			opt_alpha = alpha;
+	}
+	return opt_alpha;
+}
+
+std::vector<double> operator-(const std::vector<double>&a, const std::vector<double>&b)
+{
+	if (a.size() != b.size())
+		assert("a.size() != b.size()"); 
+	int dim = a.size();
+	std::vector<double> c(dim);
+	for (size_t i = 0; i <dim; ++i)
+		c[i] = a[i] - b[i];
+	return c;
+}
+
+std::vector<double> operator+(const std::vector<double>&a, const std::vector<double>&b)
+{
+	if (a.size() != b.size())
+		assert("a.size() != b.size()");
+	int dim = a.size();
+	std::vector<double> c(dim);
+	for (size_t i = 0; i < dim; ++i)
+		c[i] = a[i] + b[i];
+	return c;
+}
+
+std::vector<double> operator/(const std::vector<double>&a, const double &b)
+{
+	int dim = a.size();
+	std::vector<double> c(dim);
+	for (size_t i = 0; i < dim; ++i)
+		c[i] = a[i] / b;
+	return c;
+}
+
+std::vector<double> operator*(const double &b, const std::vector<double>&a)
+{
+	int dim = a.size();
+	std::vector<double> c(dim);
+	for (size_t i = 0; i < dim; ++i)
+		c[i] = a[i] * b;
+	return c;
+}

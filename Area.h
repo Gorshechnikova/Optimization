@@ -8,8 +8,7 @@ protected:
 	virtual ~Area() {};
 public:
 	Area(int n, std::vector<double> dot) : dimension(n), border(dot) {};
-	bool IsInArea(std::vector<double> x);
-	//void border_crossing(std::vector<double> x, std::vector<double> y, std::vector<double> & ans);
+	bool IsInArea(std::vector<double> x, double eps);
 	int GetDimension() {
 		return dimension;
 	}

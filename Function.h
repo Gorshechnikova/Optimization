@@ -38,8 +38,6 @@ public:
 };
 
 class function4 : public Function {
-//protected:
-	//double x1, x2, x3, x4, x5, x6;
 public:
 	virtual double eval(std::vector<double> x) override {
 		return (x[0] * x[1] * x[2]);
@@ -47,10 +45,10 @@ public:
 };
 
 class function5 : public Function {
-//protected:
-	//double x1, x2, x3, x4, x5, x6, x7, x8;
 public:
 	virtual double eval(std::vector<double> x) override {
 		return (x[0] + x[1] + x[2] + x[3]);
 	};
 };
+
+std::vector<double> Golden_ratio(std::vector<double> a, std::vector<double> b, double eps_2, Function * func);

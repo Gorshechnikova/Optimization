@@ -5,11 +5,11 @@
 #include <random>
 #include "funcs.h"
 #include <typeinfo>
-//const double eps = 1e-5;
-//const double eps_2 = 1e-10;
+
 const double min_fun = 9999;
-//const double step = 0.001;
+const double step = 1e-15;
 double delta = 0.1;
+const int N_frag = 5;
 
 
 std::vector<double> FletcherReevesCG::optimize(Area * area, Function * func, StopCriterion * criterion) {
@@ -17,7 +17,7 @@ std::vector<double> FletcherReevesCG::optimize(Area * area, Function * func, Sto
 	int dim = area->GetDimension();
 	std::vector<double> d0 = func->minus_eval_grad(y0), d1(dim), ans(dim);
 	int j = 0;
-	double lambda{}, opt_lambda{};
+	double lambda{};
 
 	//starting point optimality check
 	double norm0 = norm_2(d0), norm1{};
@@ -25,27 +25,31 @@ std::vector<double> FletcherReevesCG::optimize(Area * area, Function * func, Sto
 		return y0;
 
 	while ((iter < limit_iter)) {
-		std::vector<double> dot(dim);
+		std::vector<double> bord(dim), local_min_x(dim), test_dot(dim);
 		double curr_eval_fanc{}, min_func = min_fun;
-		lambda = 0;
 		d0 = func->minus_eval_grad(y0);
-		while (true) {
+		//проверка на нахождение текущей точки на границе и направления градиента за область
+		test_dot = y0 + step * d0;
+		if (!area->IsInArea(test_dot, eps_2))
+			return y0;
+		//разбиение отрезка от начальной точки до границы по направлению градиента на n_frag точек (включая концы)
+		std::vector<double> fragmentation1(dim), fragmentation2(dim);    //отрезок, на котором применяется золотое сечение
+		lambda = intersection(y0, d0, area->GetBorder());   //лямбда для пересечения с границей
+		for (int j = 1; j < N_frag; ++j) {                //N_frag - 1 отрезков, на которых применяется золотое сечение
 			for (int i = 0; i < dim; ++i) {
-				dot[i] = y0[i] + lambda * d0[i];
+				bord[i] = y0[i] + lambda * d0[i];
+				fragmentation1[i] = y0[i] + (bord[i] - y0[i])*(j - 1) / 5;
+				fragmentation2[i] = y0[i] + (bord[i] - y0[i])*j / 5;
 			}
-			if (!area->IsInArea(dot)) {
-				break;
-			}
-			curr_eval_fanc = func->eval(dot);
-			if ((min_func - curr_eval_fanc) > step) {
-				opt_lambda = lambda;
-				min_func = curr_eval_fanc;
-			}
-			lambda += step;
-		};
+			local_min_x = Golden_ratio(fragmentation1, fragmentation2, eps_2, func);
+			curr_eval_fanc = func->eval(local_min_x);
 
-		for (int i = 0; i < dim; ++i)
-			y1[i] = y0[i] + opt_lambda * d0[i];
+			if (min_func > curr_eval_fanc) {
+				min_func = curr_eval_fanc;
+				y1 = local_min_x;
+			}
+		}
+
 		norm0 = norm_2(d0);
 		std::vector<double> d = func->minus_eval_grad(y1);
 		norm1 = norm_2(d);
@@ -65,17 +69,11 @@ std::vector<double> FletcherReevesCG::optimize(Area * area, Function * func, Sto
 
 			y0 = y1;
 			x0 = y1;
-			//d0 = func->minus_eval_grad(y0);
 			j = 0;
-			++iter;
 		}
-
+		++iter;
 	}
 	return y0;
-}
-
-void OptimizationMethod::Set_step(double st) {
-	step = st;
 }
 
 void OptimizationMethod::Set_eps(double epsil) {
@@ -89,7 +87,6 @@ std::vector<double> Stochastic::optimize(Area * area, Function * func, StopCrite
 	int dim = area->GetDimension();
 	std::vector<double> border = area->GetBorder(), grad;
 	std::uniform_real_distribution<> dis(0, 1);
-	//std::vector<double> rand(dim);
 	int n_h{};
 	int n_hat = 1;
 	if (typeid(*criterion) == typeid(n_iter))
@@ -122,8 +119,6 @@ std::vector<double> Stochastic::optimize(Area * area, Function * func, StopCrite
 				++n_h;
 			else {
 				n_h = 0;
-				/*	y0 = y1;
-					curr_eval = new_eval;*/
 				delta /= 2;
 			}
 		}
