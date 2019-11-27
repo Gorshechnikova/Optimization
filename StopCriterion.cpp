@@ -42,3 +42,16 @@ bool last_improv::stop(std::vector<double> x0, std::vector<double> x1, double f0
 		return true;
 	return false;
 }
+
+void StopCriterion::Set_eps(double epsil) {
+	eps = epsil;
+	eps_2 = eps * eps;
+}
+
+void n_iter::Set_n_hat(int n_h) {
+	n_hat = n_h;
+}
+
+int n_iter::Get_n_hat() {
+	return n_hat;
+}

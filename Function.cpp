@@ -23,3 +23,27 @@ std::vector<double> Golden_ratio(std::vector<double> a, std::vector<double> b, d
 	}
 	return ((a + b) / 2);
 };
+
+double function1::eval(std::vector<double> x) {
+	return (x[0] - 2)*(x[0] - 2)*(x[0] - 2)*(x[0] - 2) + (x[0] - 2 * x[1])*(x[0] - 2 * x[1]);
+};
+
+double function2::eval(std::vector<double> x) {
+	return(exp(sin(x[0] / 20 + x[1] / 20)) + x[1]);
+};
+
+double function3::eval(std::vector<double> x) {
+	return(sin(x[0])*cos(x[1]));
+};
+
+double function4::eval(std::vector<double> x) {
+	return (x[0] * x[1] * x[2]);
+};
+
+double function5::eval(std::vector<double> x) {
+	return (x[0] + x[1] + x[2] + x[3]);
+};
+
+void Function::Set_eps(double epsil) {
+	eps = epsil;
+}

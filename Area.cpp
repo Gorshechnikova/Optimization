@@ -8,3 +8,11 @@ bool Area::IsInArea(std::vector<double> x, double eps) {
 			return false;
 	return true;
 }
+
+int Area::GetDimension() {
+	return dimension;
+}
+
+std::vector<double> Area::GetBorder() {
+	return border;
+}

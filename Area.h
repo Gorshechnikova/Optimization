@@ -9,12 +9,8 @@ protected:
 public:
 	Area(int n, std::vector<double> dot) : dimension(n), border(dot) {};
 	bool IsInArea(std::vector<double> x, double eps);
-	int GetDimension() {
-		return dimension;
-	}
-	std::vector<double> GetBorder() {
-		return border;
-	}
+	int GetDimension();
+	std::vector<double> GetBorder();
 };
 
 class RectArea : public Area {

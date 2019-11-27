@@ -7,7 +7,7 @@
 #include <typeinfo>
 
 const double min_fun = 9999;
-const double step = 1e-15;
+const double step = 1e-10;
 double delta = 0.1;
 const int N_frag = 5;
 
@@ -141,4 +141,16 @@ void OptimizationMethod::Set_x0y0y1(std::vector<double> x) {
 	y1.resize(x.size());
 	x0 = x;
 	y0 = x;
+}
+
+int OptimizationMethod::Get_iter() {
+	return iter;
+}
+
+void OptimizationMethod::Set_limit_iter(int lim) {
+	limit_iter = lim;
+}
+
+void Stochastic::Set_prob(double p) {
+	prob = p;
 }
