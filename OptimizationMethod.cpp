@@ -35,7 +35,7 @@ std::vector<double> FletcherReevesCG::optimize(Area * area, Function * func, Sto
 		//разбиение отрезка от начальной точки до границы по направлению градиента на n_frag точек (включая концы)
 		std::vector<double> fragmentation1(dim), fragmentation2(dim);    //отрезок, на котором применяется золотое сечение
 		lambda = intersection(y0, d0, area->GetBorder());   //лямбда для пересечения с границей
-		for (int j = 1; j < N_frag; ++j) {                //N_frag - 1 отрезков, на которых применяется золотое сечение
+		for (int j = 1; j < N_frag; ++j) {                //N_frag - 1 отрезков, на которых применяется золотое се99чение
 			for (int i = 0; i < dim; ++i) {
 				bord[i] = y0[i] + lambda * d0[i];
 				fragmentation1[i] = y0[i] + (bord[i] - y0[i])*(j - 1) / 5;

@@ -1,3 +1,9 @@
+/*!
+	Данный класс содержит два метода оптимизации нахождения минимума заданной функции в заданной области:
+	- Итерационный (здесь метод сопряженных градиентов Флетчера-Ривса)
+	- Стохастический
+*/
+
 #pragma once
 #include "Area.h"
 #include "Function.h"
@@ -11,7 +17,13 @@ protected:
 	int limit_iter;
 public:
 	OptimizationMethod(): iter(0) {};
-
+	/*!
+		Функция нахождения минимума функции и точки, в которой он достигается
+		\param area Выбранная область, в которой будет находиться минимум
+		\param func Функция, минимум которой будет находиться
+		\param criterion Критерий остановки для выбранного метода
+		\return Точку минимума функции в области
+	*/
 	virtual std::vector<double> optimize(Area * area, Function * func, StopCriterion * criterion) = 0;
 	int Get_iter();
 	void Set_x0y0y1(std::vector<double> x);
@@ -25,6 +37,7 @@ public:
 };
 
 class Stochastic : public OptimizationMethod {
+	///Вероятность попадания в окрестность текущей точки
 	double prob;
 public:
 	virtual std::vector<double> optimize(Area * area, Function * func, StopCriterion * criterion) override;

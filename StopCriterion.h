@@ -1,3 +1,12 @@
+/*!
+	Данный класс содержит определения различных критериев остановки для разных методов:
+	- Норма градиента меньше эпсилон
+	- Норма разности двух соседних точек меньше эпсилон
+	- Модуль разности значений в двух соседних точках, деленной на значение в последней меньше эпсилон
+	- Превышение числа итераций с последнего улучшения
+	- Модуль разности значений с последнего улучшения
+*/
+
 #pragma once
 #include "funcs.h"
 
@@ -7,6 +16,7 @@ protected:
 	double eps_2;
 	virtual ~StopCriterion() {};
 public:
+	///Функция, осуществляющая проверку выбранного критерия остановки и возвращающая соответсвующее значение
 	virtual bool stop(std::vector<double> x0, std::vector<double> x1, double f0, double f1, std::vector<double> grad) = 0;
 	void Set_eps(double epsil);
 };
@@ -27,6 +37,7 @@ public:
 };
 
 class n_iter : public StopCriterion {
+	///предел количества итераций с последнего улучшения
 	int n_hat;
 public:
 	virtual bool stop(std::vector<double> x0, std::vector<double> x1, double f0, double f1, std::vector<double> grad) override;

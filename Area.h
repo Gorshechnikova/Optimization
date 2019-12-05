@@ -1,13 +1,25 @@
+/*!
+	¬ данном классе определ€ютс€ возможные заданные области, предоставл€емые пользователю на выбор.
+*/
+
 #pragma once
 #include "funcs.h"
 
 class Area {
 protected:
+	///–азмерность области
 	int dimension;
+	///√раница области
 	std::vector<double> border;
 	virtual ~Area() {};
 public:
 	Area(int n, std::vector<double> dot) : dimension(n), border(dot) {};
+	/*!
+		ѕровер€ет, находитс€ ли переданна€ точка в текущей области с заданной погрешностью.
+		\param x ѕровер€ема€ точка
+		\param eps «аданна€ погрешность
+		\return 1, если точка внутри области; 0, иначе
+	*/
 	bool IsInArea(std::vector<double> x, double eps);
 	int GetDimension();
 	std::vector<double> GetBorder();
