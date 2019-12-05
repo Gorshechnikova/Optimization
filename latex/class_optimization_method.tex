@@ -1,0 +1,88 @@
+\hypertarget{class_optimization_method}{}\section{Optimization\+Method Class Reference}
+\label{class_optimization_method}\index{Optimization\+Method@{Optimization\+Method}}
+
+
+{\ttfamily \#include $<$Optimization\+Method.\+h$>$}
+
+Inheritance diagram for Optimization\+Method\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_optimization_method}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::vector$<$ double $>$ \mbox{\hyperlink{class_optimization_method_a63dd17c00593363a017c8dd440770aa2}{optimize}} (\mbox{\hyperlink{class_area}{Area}} $\ast$area, \mbox{\hyperlink{class_function}{Function}} $\ast$func, \mbox{\hyperlink{class_stop_criterion}{Stop\+Criterion}} $\ast$criterion)=0
+\item 
+\mbox{\Hypertarget{class_optimization_method_a8848ef8edd0cf5f7b8d28e3d91489c73}\label{class_optimization_method_a8848ef8edd0cf5f7b8d28e3d91489c73}} 
+int {\bfseries Get\+\_\+iter} ()
+\item 
+\mbox{\Hypertarget{class_optimization_method_a4be709579f631e714fe8dc143a42e772}\label{class_optimization_method_a4be709579f631e714fe8dc143a42e772}} 
+void {\bfseries Set\+\_\+x0y0y1} (std\+::vector$<$ double $>$ x)
+\item 
+\mbox{\Hypertarget{class_optimization_method_a50af095f319048fad7a38ea0140ec841}\label{class_optimization_method_a50af095f319048fad7a38ea0140ec841}} 
+void {\bfseries Set\+\_\+eps} (double epsil)
+\item 
+\mbox{\Hypertarget{class_optimization_method_aa66a2635f80201526d6a17c2d0766c97}\label{class_optimization_method_aa66a2635f80201526d6a17c2d0766c97}} 
+void {\bfseries Set\+\_\+limit\+\_\+iter} (int lim)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_optimization_method_acaad093b3b09087b6a4f01213b887a6e}\label{class_optimization_method_acaad093b3b09087b6a4f01213b887a6e}} 
+std\+::vector$<$ double $>$ {\bfseries x0}
+\item 
+\mbox{\Hypertarget{class_optimization_method_a8c49149ae44f8f39e3c120221a1f3a97}\label{class_optimization_method_a8c49149ae44f8f39e3c120221a1f3a97}} 
+std\+::vector$<$ double $>$ {\bfseries y0}
+\item 
+\mbox{\Hypertarget{class_optimization_method_a9ccddf8151dad78644c061023cde519b}\label{class_optimization_method_a9ccddf8151dad78644c061023cde519b}} 
+std\+::vector$<$ double $>$ {\bfseries y1}
+\item 
+\mbox{\Hypertarget{class_optimization_method_aa4ae38435665f3a28b9c661e69f539b2}\label{class_optimization_method_aa4ae38435665f3a28b9c661e69f539b2}} 
+int {\bfseries iter}
+\item 
+\mbox{\Hypertarget{class_optimization_method_af2113a4e55f9ff2f7cd65469f3fc1a55}\label{class_optimization_method_af2113a4e55f9ff2f7cd65469f3fc1a55}} 
+double {\bfseries eps}
+\item 
+\mbox{\Hypertarget{class_optimization_method_a724a0ba7ab2a661bc495680fc15006e0}\label{class_optimization_method_a724a0ba7ab2a661bc495680fc15006e0}} 
+int {\bfseries limit\+\_\+iter}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Данный класс содержит два метода оптимизации нахождения минимума заданной функции в заданной области\+:
+\begin{DoxyItemize}
+\item Итерационный (здесь метод сопряженных градиентов Флетчера-\/Ривса)
+\item Стохастический 
+\end{DoxyItemize}
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_optimization_method_a63dd17c00593363a017c8dd440770aa2}\label{class_optimization_method_a63dd17c00593363a017c8dd440770aa2}} 
+\index{Optimization\+Method@{Optimization\+Method}!optimize@{optimize}}
+\index{optimize@{optimize}!Optimization\+Method@{Optimization\+Method}}
+\subsubsection{\texorpdfstring{optimize()}{optimize()}}
+{\footnotesize\ttfamily virtual std\+::vector$<$double$>$ Optimization\+Method\+::optimize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_area}{Area}} $\ast$}]{area,  }\item[{\mbox{\hyperlink{class_function}{Function}} $\ast$}]{func,  }\item[{\mbox{\hyperlink{class_stop_criterion}{Stop\+Criterion}} $\ast$}]{criterion }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Функция нахождения минимума функции и точки, в которой он достигается 
+\begin{DoxyParams}{Parameters}
+{\em area} & Выбранная область, в которой будет находиться минимум \\
+\hline
+{\em func} & Функция, минимум которой будет находиться \\
+\hline
+{\em criterion} & Критерий остановки для выбранного метода \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Точку минимума функции в области 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_stochastic_a7a219f4e02daecd5c8c185de0df80353}{Stochastic}}, and \mbox{\hyperlink{class_fletcher_reeves_c_g_a40c56c0485371b31000672236b433dc7}{Fletcher\+Reeves\+CG}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Optimization\+Method.\+h\item 
+Optimization\+Method.\+cpp\end{DoxyCompactItemize}

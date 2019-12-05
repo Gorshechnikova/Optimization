@@ -1,0 +1,45 @@
+\hypertarget{class_fletcher_reeves_c_g}{}\section{Fletcher\+Reeves\+CG Class Reference}
+\label{class_fletcher_reeves_c_g}\index{Fletcher\+Reeves\+CG@{Fletcher\+Reeves\+CG}}
+Inheritance diagram for Fletcher\+Reeves\+CG\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_fletcher_reeves_c_g}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::vector$<$ double $>$ \mbox{\hyperlink{class_fletcher_reeves_c_g_a40c56c0485371b31000672236b433dc7}{optimize}} (\mbox{\hyperlink{class_area}{Area}} $\ast$area, \mbox{\hyperlink{class_function}{Function}} $\ast$func, \mbox{\hyperlink{class_stop_criterion}{Stop\+Criterion}} $\ast$criterion) override
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_fletcher_reeves_c_g_a40c56c0485371b31000672236b433dc7}\label{class_fletcher_reeves_c_g_a40c56c0485371b31000672236b433dc7}} 
+\index{Fletcher\+Reeves\+CG@{Fletcher\+Reeves\+CG}!optimize@{optimize}}
+\index{optimize@{optimize}!Fletcher\+Reeves\+CG@{Fletcher\+Reeves\+CG}}
+\subsubsection{\texorpdfstring{optimize()}{optimize()}}
+{\footnotesize\ttfamily std\+::vector$<$ double $>$ Fletcher\+Reeves\+C\+G\+::optimize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_area}{Area}} $\ast$}]{area,  }\item[{\mbox{\hyperlink{class_function}{Function}} $\ast$}]{func,  }\item[{\mbox{\hyperlink{class_stop_criterion}{Stop\+Criterion}} $\ast$}]{criterion }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Функция нахождения минимума функции и точки, в которой он достигается 
+\begin{DoxyParams}{Parameters}
+{\em area} & Выбранная область, в которой будет находиться минимум \\
+\hline
+{\em func} & Функция, минимум которой будет находиться \\
+\hline
+{\em criterion} & Критерий остановки для выбранного метода \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Точку минимума функции в области 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_optimization_method_a63dd17c00593363a017c8dd440770aa2}{Optimization\+Method}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Optimization\+Method.\+h\item 
+Optimization\+Method.\+cpp\end{DoxyCompactItemize}

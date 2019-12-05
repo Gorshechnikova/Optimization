@@ -1,0 +1,63 @@
+\hypertarget{class_area}{}\section{Area Class Reference}
+\label{class_area}\index{Area@{Area}}
+
+
+{\ttfamily \#include $<$Area.\+h$>$}
+
+Inheritance diagram for Area\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=11.000000cm]{class_area}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_area_ace56b94df20ea28011b3a9cd95dc1822}\label{class_area_ace56b94df20ea28011b3a9cd95dc1822}} 
+{\bfseries Area} (int n, std\+::vector$<$ double $>$ dot)
+\item 
+bool \mbox{\hyperlink{class_area_a51d5a60d36a0fd4c45eb374eea1bc976}{Is\+In\+Area}} (std\+::vector$<$ double $>$ x, double eps)
+\item 
+\mbox{\Hypertarget{class_area_a0981bb64103aa1fada5c4eb015d16728}\label{class_area_a0981bb64103aa1fada5c4eb015d16728}} 
+int {\bfseries Get\+Dimension} ()
+\item 
+\mbox{\Hypertarget{class_area_a976037f5d9dace960388d0bfcfaf1d01}\label{class_area_a976037f5d9dace960388d0bfcfaf1d01}} 
+std\+::vector$<$ double $>$ {\bfseries Get\+Border} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_area_a4ec26baccd65af0189a9c8c25ab86ec3}\label{class_area_a4ec26baccd65af0189a9c8c25ab86ec3}} 
+int \mbox{\hyperlink{class_area_a4ec26baccd65af0189a9c8c25ab86ec3}{dimension}}
+\begin{DoxyCompactList}\small\item\em Размерность области \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_area_abfef011384225390a16165cd89f5d69d}\label{class_area_abfef011384225390a16165cd89f5d69d}} 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{class_area_abfef011384225390a16165cd89f5d69d}{border}}
+\begin{DoxyCompactList}\small\item\em Граница области \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+В данном классе определяются возможные заданные области, предоставляемые пользователю на выбор. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_area_a51d5a60d36a0fd4c45eb374eea1bc976}\label{class_area_a51d5a60d36a0fd4c45eb374eea1bc976}} 
+\index{Area@{Area}!Is\+In\+Area@{Is\+In\+Area}}
+\index{Is\+In\+Area@{Is\+In\+Area}!Area@{Area}}
+\subsubsection{\texorpdfstring{Is\+In\+Area()}{IsInArea()}}
+{\footnotesize\ttfamily bool Area\+::\+Is\+In\+Area (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$}]{x,  }\item[{double}]{eps }\end{DoxyParamCaption})}
+
+Проверяет, находится ли переданная точка в текущей области с заданной погрешностью. 
+\begin{DoxyParams}{Parameters}
+{\em x} & Проверяемая точка \\
+\hline
+{\em eps} & Заданная погрешность \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1, если точка внутри области; 0, иначе 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Area.\+h\item 
+Area.\+cpp\end{DoxyCompactItemize}

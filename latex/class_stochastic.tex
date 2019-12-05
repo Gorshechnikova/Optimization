@@ -1,0 +1,48 @@
+\hypertarget{class_stochastic}{}\section{Stochastic Class Reference}
+\label{class_stochastic}\index{Stochastic@{Stochastic}}
+Inheritance diagram for Stochastic\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_stochastic}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::vector$<$ double $>$ \mbox{\hyperlink{class_stochastic_a7a219f4e02daecd5c8c185de0df80353}{optimize}} (\mbox{\hyperlink{class_area}{Area}} $\ast$area, \mbox{\hyperlink{class_function}{Function}} $\ast$func, \mbox{\hyperlink{class_stop_criterion}{Stop\+Criterion}} $\ast$criterion) override
+\item 
+\mbox{\Hypertarget{class_stochastic_ad66c12f98a754caea907d5df26af56ef}\label{class_stochastic_ad66c12f98a754caea907d5df26af56ef}} 
+void {\bfseries Set\+\_\+prob} (double p)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_stochastic_a7a219f4e02daecd5c8c185de0df80353}\label{class_stochastic_a7a219f4e02daecd5c8c185de0df80353}} 
+\index{Stochastic@{Stochastic}!optimize@{optimize}}
+\index{optimize@{optimize}!Stochastic@{Stochastic}}
+\subsubsection{\texorpdfstring{optimize()}{optimize()}}
+{\footnotesize\ttfamily std\+::vector$<$ double $>$ Stochastic\+::optimize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_area}{Area}} $\ast$}]{area,  }\item[{\mbox{\hyperlink{class_function}{Function}} $\ast$}]{func,  }\item[{\mbox{\hyperlink{class_stop_criterion}{Stop\+Criterion}} $\ast$}]{criterion }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Функция нахождения минимума функции и точки, в которой он достигается 
+\begin{DoxyParams}{Parameters}
+{\em area} & Выбранная область, в которой будет находиться минимум \\
+\hline
+{\em func} & Функция, минимум которой будет находиться \\
+\hline
+{\em criterion} & Критерий остановки для выбранного метода \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Точку минимума функции в области 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_optimization_method_a63dd17c00593363a017c8dd440770aa2}{Optimization\+Method}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Optimization\+Method.\+h\item 
+Optimization\+Method.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,52 @@
+\hypertarget{class_stop_criterion}{}\section{Stop\+Criterion Class Reference}
+\label{class_stop_criterion}\index{Stop\+Criterion@{Stop\+Criterion}}
+
+
+{\ttfamily \#include $<$Stop\+Criterion.\+h$>$}
+
+Inheritance diagram for Stop\+Criterion\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_stop_criterion}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_stop_criterion_a5d6cb226bf9fc09d2924941f382f945a}\label{class_stop_criterion_a5d6cb226bf9fc09d2924941f382f945a}} 
+virtual bool \mbox{\hyperlink{class_stop_criterion_a5d6cb226bf9fc09d2924941f382f945a}{stop}} (std\+::vector$<$ double $>$ x0, std\+::vector$<$ double $>$ x1, double f0, double f1, std\+::vector$<$ double $>$ grad)=0
+\begin{DoxyCompactList}\small\item\em Функция, осуществляющая проверку выбранного критерия остановки и возвращающая соответсвующее значение \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_stop_criterion_abbd042a803864e4da709b29f5c34ef2d}\label{class_stop_criterion_abbd042a803864e4da709b29f5c34ef2d}} 
+void {\bfseries Set\+\_\+eps} (double epsil)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_stop_criterion_aa848cdc8c317a0788f3bc2daa9444b18}\label{class_stop_criterion_aa848cdc8c317a0788f3bc2daa9444b18}} 
+double {\bfseries eps}
+\item 
+\mbox{\Hypertarget{class_stop_criterion_ad42a03c72fd52d679c1bd787761cb73a}\label{class_stop_criterion_ad42a03c72fd52d679c1bd787761cb73a}} 
+double {\bfseries eps\+\_\+2}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Данный класс содержит определения различных критериев остановки для разных методов\+:
+\begin{DoxyItemize}
+\item Итерационный метод\+:
+\begin{DoxyItemize}
+\item Норма градиента меньше эпсилон
+\item Норма разности двух соседних точек меньше эпсилон
+\item Модуль разности значений в двух соседних точках, деленной на значение в последней меньше эпсилон
+\end{DoxyItemize}
+\item Стохастический метод\+:
+\begin{DoxyItemize}
+\item Превышение числа итераций с последнего улучшения
+\item Модуль разности значений с последнего улучшения 
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Stop\+Criterion.\+h\item 
+Stop\+Criterion.\+cpp\end{DoxyCompactItemize}
